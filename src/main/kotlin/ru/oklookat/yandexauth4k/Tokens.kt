@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 class Tokens {
-    internal companion object {
+    companion object {
         private const val ENDPOINT = "https://oauth.yandex.ru/token"
 
         /** Пользователь еще не ввел код подтверждения. */
@@ -22,7 +22,7 @@ class Tokens {
         /** Неверный или просроченный код подтверждения.*/
         private const val INVALID_GRANT = "invalid_grant"
 
-        suspend fun request(deviceCode: String, codesInterval: Int, clientId: String, clientSecret: String): Response {
+        internal suspend fun request(deviceCode: String, codesInterval: Int, clientId: String, clientSecret: String): Response {
             val formBody = FormBody.Builder()
                 .add("grant_type", "device_code")
                 .add("code", deviceCode)
